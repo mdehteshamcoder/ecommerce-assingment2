@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <style>
+        body>form{
+            display:flex;
+            flex-direction:column;
+            width:40%;
+            margin:auto;
+            padding:20px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            background-color:white;
+        }
+        body{
+            background-color:antiquewhite
+        }
+        body>form>input{
+            margin:10px;
+            padding:10px;
+        }
+        #submit{
+            background-color:lightskyblue;
+            border-radius:16px;
+            border:0px;
+        }
+        body>h1{
+            text-align:center;
+            color:coral;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login page</h1>
+    <form action="">
+        <input type="email" id="email" placeholder="Enter your Email">
+        <input type="password" id="password" placeholder="enter your password">
+        <input type="submit" value="login" id="submit">
+    </form>
+</body>
+<script>
+    document.querySelector("form").addEventListener("submit",loginfn);
+    var registredusers=JSON.parse(localStorage.getItem("userdata"));
+    function loginfn(){
+        event.preventDefault();
+        var enteredemail=document.querySelector("#email").value;
+        var enteredpass=document.querySelector("#password").value;
+        var flag=false;
+        registredusers.forEach(ele => {
+            if(ele.email===enteredemail && ele.password===enteredpass){
+                flag=true;
+                alert("login success");
+            }
+        });
+        if(flag==false){
+            window.alert("login failed or signup first");
+        }
+    }
+    
+</script>
+</html>
